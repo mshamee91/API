@@ -17,8 +17,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.qa.base.TestBase;
 import com.qa.data.Users;
+import com.qa.data.UsersOutput;
 import com.qa.restclient.RestClient;
 import com.qa.util.TestUtil;
 
@@ -43,15 +45,13 @@ public class PostAPITestMethod2 extends TestBase {
 		HashMap<String, String> reqHeader = new HashMap<String, String>();
 		reqHeader.put("Content-Type", "application/json");
 
-		Users users = new Users("New Product", "Hard Good", String.valueOf(upc), 99.99,
-				"This is a placeholder request for creating a new product.", "NP12345");
-
-		/*users.setName("New Product");
+		Users users = new Users();
+		users.setName("New Product");
 		users.setType("Hard Good");
 		users.setUpc(String.valueOf(upc));
 		users.setPrice(99.99);
 		users.setDescription("This is a placeholder request for creating a new product.");
-		users.setModel("NP12345");*/
+		users.setModel("NP12345");
 
 		ObjectMapper mapper = new ObjectMapper();
 		String reqPayload = mapper.writeValueAsString(users);
@@ -76,10 +76,12 @@ public class PostAPITestMethod2 extends TestBase {
 
 		System.out.println(responsJSON);
 
-		//Users fetch = mapper.readValue(responseString, Users.class);
-		//System.out.println(fetch.getId());
-		
-		int id = TestUtil.getIntFromJsonResponse(responsJSON, "id");
-		System.out.println(id);
+		UsersOutput fetch = mapper.readValue(responseString, UsersOutput.class);
+		System.out.println(fetch.getId());
+
+		/*
+		 * int id = TestUtil.getIntFromJsonResponse(responsJSON, "id");
+		 * System.out.println(id);
+		 */
 	}
 }

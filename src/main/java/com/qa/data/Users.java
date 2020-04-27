@@ -1,7 +1,9 @@
 package com.qa.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+/*import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+@JsonInclude(Include.NON_NULL)*/
 public class Users {
 	
 	String name;
@@ -10,9 +12,8 @@ public class Users {
 	double price;
 	String description;
 	String model;
-	//int id;
-	
-	public Users(String name,String type,String upc,double price,String description,String model)
+		
+	/*public Users(String name,String type,String upc,double price,String description,String model)
 	{
 		this.name = name;
 		this.type = type;
@@ -20,16 +21,12 @@ public class Users {
 		this.price = price;
 		this.description = description;
 		this.model = model;
-	}
-/*	@JsonIgnore
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public int getId() {
-		return id;
 	}*/
 	
+	public Users() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getName() {
 		return name;
 	}
